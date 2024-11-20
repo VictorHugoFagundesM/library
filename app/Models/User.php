@@ -13,36 +13,28 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Obtém todos os dados relacionados ao usuário e se necessário aplica os devidos filtros
      *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+     * @param [type] $query
+     * @param [type] $request
+     * @return void
+    */
+    public function scopeSearch($query, $request = null) {
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+        $query->from("users")
+        ->select("*");
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        if (isset($request->search) && $request->search) {
+
+            $query->where(function ($query) use ($request){
+                $query->whereRaw("LOWER(name) LIKE '%$request->search%'")
+                ->orWhereRaw("LOWER(email) LIKE '%$request->search%'");
+            });
+
+        }
+
+        $query->orderBy("created_at", "desc");
+
     }
+
 }

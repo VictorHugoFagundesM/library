@@ -1,4 +1,4 @@
-<form class="search-filter" method="GET" action="{{ url($path) }}">
+<form class="search-filter mb-2" method="GET" action="{{ url($path) }}">
 
     @php
         $quantities = [10,15,20,25,30,35,40];
@@ -28,11 +28,10 @@
                 </select>
 
             </div>
-
         </div>
 
-    </div>
+        <button class="btn btn-primary mt-2">Aplicar Filtros</button>
 
-    <div type="submit" class="btn btn-primary">Aplicar Filtros</div>
+    </div>
 
 </form>

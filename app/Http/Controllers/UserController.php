@@ -61,7 +61,8 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'id' => ['nullable', 'required_if:method,PUT', 'exists:users,id'],
             'name' => ['required', 'string', 'max:80'],
-            'email' => ['required', 'string', 'max:100', 'unique:users,email,'.$request->id],
+            'email' => ['required', 'string', 'email', 'max:100', 'unique:users,email,'.$request->id],
+            'register_number' => ['required', 'numeric'],
         ]);
 
         return $validator;
@@ -85,7 +86,7 @@ class UserController extends Controller
 
                 if ($user) {
                     $this->save($request, $user);
-                    Session::flash("success", "Usuário atualizado com sucesso!");
+                    Session::flash("success", "Usuário ". ( $request->id ? 'atualizado' : 'criado' ) . " com sucesso!");
                     return redirect("users");
 
                 } else {
@@ -94,10 +95,10 @@ class UserController extends Controller
 
             }
 
-            return back()->withErrors('Não foi possível atualizar o usuário: '. $validation->errors()->first());
+            return back()->withErrors("Não foi possível ". ( $request->id ? 'atualizar' : 'criar' ) ." o usuário: ". $validation->errors()->first());
 
         } catch (Exception $e) {
-            return back()->withErrors("Ocorreu um problema ao tentar atualizar o usuário, tente novamente mais tarde ou contate um administrador");
+            return back()->withErrors("Ocorreu um problema ao tentar ". ($request->id ? 'atualizar' : 'criar') . " o usuário, tente novamente mais tarde ou contate um administrador");
         }
 
     }
@@ -113,6 +114,7 @@ class UserController extends Controller
         try {
             $user->name = $request->name;
             $user->email = $request->email;
+            $user->register_number = $request->register_number;
             $user->save();
 
         } catch (Exception $e) {
@@ -136,7 +138,7 @@ class UserController extends Controller
             return back()->withSuccess("Usuário removido com sucesso!");
         }
 
-        return back()->withErrors("Não é possível remover este usuário.");
+        return back()->withErrors("Não é possível remover este usuário: usuário não econtrado.");
     }
 
 }

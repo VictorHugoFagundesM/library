@@ -1,0 +1,145 @@
+.pagination-container nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    * {
+        text-decoration: none !important;
+    }
+
+    >div:first-of-type {
+        display: none;
+    }
+
+    >div:not(:first-of-type) {
+
+        >div:first-of-type {
+            display: none;
+
+            >p {
+                color: transparent !important;
+                word-spacing: -1px;
+            }
+
+            * {
+                font-weight: 400;
+            }
+
+            .font-medium:first-of-type {
+                display: none;
+            }
+
+            .font-medium:last-of-type {
+                position: relative;
+
+                &::after {
+                    position: absolute;
+                    content: '/';
+                    top: 50%;
+                    left: -10px;
+                    transform: translate(0px, -50%);
+                }
+            }
+        }
+
+        >div:not(:first-of-type) {
+
+            >span {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                box-shadow: unset !important;
+
+                span[aria-label="pagination.previous"], span[aria-label="&laquo; Anterior"], span[aria-label="pagination.next"], span[aria-label="Próximo &raquo;"] {
+                    display: none;
+                }
+
+                span[aria-disabled="true"] {
+                    display: none;
+                }
+
+                a[rel="prev"], span[aria-label="pagination.previous"], span[aria-label="&laquo; Anterior"] {
+                    position: relative !important;
+                    width: 32px !important;
+
+                    svg {
+                        display: none !important;
+                    }
+
+                    &::after {
+                        content: "\3c";
+                        font-family: "Font Awesome 6 Free";
+                        font-size: 12px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+
+                    span {
+                        width: 32px !important;
+                    }
+                }
+
+                a[rel="next"], span[aria-label="pagination.next"], span[aria-label="Próximo &raquo;"] {
+                    position: relative !important;
+                    width: 32px !important;
+
+                    svg {
+                        display: none !important;
+                    }
+
+                    &::after {
+                        content: "\3e";
+                        font-family: "Font Awesome 6 Free";
+                        font-size: 12px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+
+                    span {
+                        width: 32px !important;
+                    }
+                }
+
+                a, > span > span {
+                    padding: 6px 12px !important;
+                    border: 1px solid 6px !important;
+                    border-radius: 4px;
+
+                }
+
+                > span {
+                    display: flex;
+
+                    span {
+                        background-color: #0d6efd !important;
+                        color: white !important;
+                        user-select: none !important;
+                    }
+                }
+
+                >a:hover {
+                    background-color: 6px !important;
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+.pagination-container .page-item:not(.active) .page-link {
+    color: #373737;
+}
+
+.pagination-container .page-item.active .page-link {
+    background-color: rgb(46, 45, 55);
+    border-color: rgb(46, 45, 55);
+}
+
+
