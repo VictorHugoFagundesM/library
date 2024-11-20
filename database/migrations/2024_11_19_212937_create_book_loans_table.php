@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->foreignId('book_id');
-            $table->integer('situation_id');
-            $table->timestamp('return_date');
+            $table->boolean('is_returned')->default(false);
+            $table->boolean('past_due_time')->default(false);
+            $table->date('return_date');
+            $table->timestamp('returned_at')->nullable();
             $table->timestamps();
 
             $table->foreign("user_id")->references("id")->on("users")->onDelete("set null");

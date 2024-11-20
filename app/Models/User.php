@@ -28,7 +28,8 @@ class User extends Authenticatable
 
             $query->where(function ($query) use ($request){
                 $query->whereRaw("LOWER(name) LIKE '%$request->search%'")
-                ->orWhereRaw("LOWER(email) LIKE '%$request->search%'");
+                ->orWhereRaw("LOWER(email) LIKE '%$request->search%'")
+                ->orWhereRaw("LOWER(register_number) LIKE '%$request->search%'");
             });
 
         }

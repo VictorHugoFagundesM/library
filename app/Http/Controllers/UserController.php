@@ -127,7 +127,7 @@ class UserController extends Controller
     /**
      * Deleta um usuário
      *
-     * @param [type] $adId
+     * @param [type] $request
      * @return void
      */
     public function delete(Request $request) {

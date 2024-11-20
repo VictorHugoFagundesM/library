@@ -127,6 +127,30 @@ body {
                         justify-content: center;
                     }
 
+                    .tags {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        gap: 10px;
+
+                        .tag {
+                            padding: 3px 5px;
+                            border-radius: 6px;
+                            color: white;
+                            background-color: #0d6efd;
+                        }
+
+                        .tag-success {
+                            background-color: #00c066;
+                        }
+
+                        .tag-danger {
+                            background-color: #c53003;
+                        }
+                    }
+
+
                 }
 
                 .form-container {
@@ -163,6 +187,81 @@ body {
         left: 50%;
         transform: translate(-50%, 0px);
         width: 100%;
+    }
+
+}
+
+.selector-2 {
+    width: 100%;
+    position: relative;
+
+    .field-search {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 5px;
+
+        input {
+            // border: 0px !important;
+        }
+
+        .tag {
+            padding: 5px;
+            background-color: #0d6efd;
+            border-radius: 5px;
+            cursor: default;
+            color: white;
+        }
+    }
+
+    &.active {
+
+        .field-search {
+            border-radius: 8px 8px 0px 0px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid 6px;
+            border-radius: 0px 0px 8px 8px;
+            background-color: white;
+            box-shadow: -2px 4px 16px -15px rgb(0 0 0 / 75%);
+            max-height: 300px;
+            overflow-y: auto;
+            position: absolute;
+            width: 100%;
+            padding: 10px;
+
+            &.upper {
+                top: 0px;
+                transform: translateY(-100%);
+                border-radius: 8px 8px 0px 0px;
+            }
+
+            .selector-option {
+                padding: 10px;
+                font-size: 14px;
+
+                &:hover {
+                    background-color: #0d6dfd91;
+                }
+
+                &.selected {
+                    background-color: #0d6efd !important;
+                    color: white;
+                }
+            }
+        }
+
+    }
+
+    .options-list {
+        display: none;
     }
 
 }

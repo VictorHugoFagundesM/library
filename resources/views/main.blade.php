@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Library</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -21,30 +21,30 @@
     <ul class="nav">
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/">
                 <i class="fas fa-book"></i>
-                Teca
+                Library
             </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" href="#">Início</a>
+          <a class="nav-link {{Request::path() == "/" ? "active" : ""}}" href="/">Início</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="users">Usuários</a>
+          <a class="nav-link {{Request::path() == "users" ? "active" : ""}}" href="/users">Usuários</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="books">Livros</a>
+          <a class="nav-link {{Request::path() == "books" ? "active" : ""}}" href="/books">Livros</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="genres">Gêneros</a>
+          <a class="nav-link {{Request::path() == "genres" ? "active" : ""}}" href="/genres">Gêneros</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="loans">Empréstimos</a>
+            <a class="nav-link {{Request::path() == "loans" ? "active" : ""}}" href="/loans">Empréstimos</a>
         </li>
 
     </ul>

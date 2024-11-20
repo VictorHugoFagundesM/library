@@ -20,10 +20,12 @@ class BookLoanFactory extends Factory
     {
         $userId = User::all()->random(1)->first()->id;
         $bookId = Book::all()->random(1)->first()->id;
-
+        $isReturned = fake()->boolean();
         return [
-            'situation_id' => rand(1, 2),
+            'is_returned' => $isReturned,
+            'past_due_time' => fake()->boolean(),
             'return_date' => fake()->date(),
+            'returned_at' => $isReturned ? fake()->date() : null,
             'user_id' => $userId,
             'book_id' => $bookId,
         ];

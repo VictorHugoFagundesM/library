@@ -18,9 +18,9 @@ class BookFactory extends Factory
     {
 
         return [
-            'status_id' => rand(1, 2),
             'name' => fake()->name(),
             'author' => fake()->name(),
+            'register_number' => random_int(10000, 99999),
         ];
 
     }

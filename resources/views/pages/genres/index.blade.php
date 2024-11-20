@@ -8,24 +8,24 @@
 
         @include('components.alert', ['oneError' => true ])
 
-        <h3>Usuários</h3>
-        <a class="btn btn-primary" href="users/create">Novo usuário</a>
+        <h3>Gêneros</h3>
+        <a class="btn btn-primary" href="genres/create">Novo gênero</a>
     </div>
 
     <div class="page-body">
 
         @include('components.filter',[
-            "path" => "users",
-            "placeholder" => "Pesquise pelo nome, email do usuário ou n° de registro",
+            "path" => "genres",
+            "placeholder" => "Pesquise pelo nome do gênero",
             "search" => $search,
             "paginate" => $paginate
         ])
 
         <div>
-            <p>Resultado(s) encontrado(s): <b class="fw-500">{{$users->total()}}</b></p>
+            <p>Resultado(s) encontrado(s): <b class="fw-500">{{$genres->total()}}</b></p>
         </div>
 
-        @if (count($users))
+        @if (count($genres))
 
             <div class="table-wrapper">
 
@@ -33,30 +33,26 @@
 
                     <tr class="table-header">
                         <th>Id</th>
-                        <th>N° de registro</th>
                         <th>Nome</th>
-                        <th>Email</th>
                         <th>Criação</th>
                         <th>Edição</th>
                         <th>Ações</th>
                     </tr>
 
-                    @foreach ($users as $user)
+                    @foreach ($genres as $genre)
 
                         <tr>
-                            <td>{{$user->id}}</td>
-                            <td>{{$user->register_number}}</td>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->email ?? "-"}}</td>
-                            <td>{{ isset($user->created_at) ? $user->created_at->format('d/m/Y H:i') : '-'}}</td>
-                            <td>{{ isset($user->updated_at) ? $user->updated_at->format('d/m/Y H:i') : '-'}}</td>
+                            <td>{{$genre->id}}</td>
+                            <td>{{$genre->name}}</td>
+                            <td>{{ isset($genre->created_at) ? $genre->created_at->format('d/m/Y H:i') : '-'}}</td>
+                            <td>{{ isset($genre->updated_at) ? $genre->updated_at->format('d/m/Y H:i') : '-'}}</td>
                             <td class="table-actions">
-                                <a href="{{url('users/'.$user->id.'/edit')}}" title="Editar item" class="btn btn-icon btn-icon-primary"><i class="fa-solid fa-pen"></i></a>
+                                <a href="{{url('genres/'.$genre->id.'/edit')}}" title="Editar item" class="btn btn-icon btn-icon-primary"><i class="fa-solid fa-pen"></i></a>
 
-                                <form method="POST" action="{{url('users')}}" class="">
+                                <form method="POST" action="{{url('genres')}}" class="">
                                     @method( "DELETE" )
                                     @csrf
-                                    <input type="hidden" name="id" value="{{$user->id}}" />
+                                    <input type="hidden" name="id" value="{{$genre->id}}" />
 
                                     <button class="btn btn-icon btn-icon-danger" type="submit" title="Excluir item">
                                         <i class="fa-solid fa-trash"></i>
@@ -74,13 +70,13 @@
         @else
 
             <div class="no-results">
-                <div class="text-center w-100 mb-5"> Nenhum usuário encontrado para os filtros selecionados. </div>
+                <div class="text-center w-100 mb-5"> Nenhum gênero encontrado para os filtros selecionados. </div>
             </div>
 
         @endif
 
         <div class="pagination-container">
-            {{ $users->links() }}
+            {{ $genres->links() }}
         </div>
 
     </div>

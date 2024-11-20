@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BookSeeder::class,
             UserSeeder::class,
-            CategorySeeder::class,
+            GenreSeeder::class,
             BookSeeder::class,
             BookLoanSeeder::class,
-            BookCategorySeeder::class,
+            BookGenreSeeder::class,
         ]);
     }
 }
