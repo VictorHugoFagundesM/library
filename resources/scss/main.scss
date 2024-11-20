@@ -1,0 +1,90 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    * {
+        color: rgb(61, 61, 61);
+    }
+
+    ul.nav {
+        padding: 5px 30px;
+        box-shadow: rgba(17, 12, 46, 0.15) 0px -4px 18px 0px;
+        gap: 15px;
+        align-items: center;
+        z-index: 2;
+
+        .nav-item:first-of-type {
+            margin-right: 20px;
+
+            a {
+                display: flex;
+                align-content: center;
+                align-items: center;
+                gap: 4px;
+                font-size: 20px;
+                font-weight: 500;
+                color: rgb(109, 7, 243);
+                cursor: pointer;
+
+                i {
+                    border-radius: 50%;
+                    background-color: rgb(109, 7, 243);
+                    color: rgb(243, 243, 243);
+                    font-size: 14px;
+                    padding: 8px;
+                    width: 30px;
+                    height: 30px;
+                    text-align: center;
+                }
+            }
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: rgb(24, 24, 24);
+            font-size: 15px;
+
+            &.active {
+                color: rgb(109, 7, 243);
+            }
+
+            &:hover:not(.active) {
+                color: rgba(109, 7, 243, 0.836);
+            }
+        }
+    }
+
+    .page-wrapper {
+        padding: 30px;
+        background-color: #f1f1f1;
+        flex-grow: 1;
+
+        .page-content {
+            background-color: white;
+            border-radius: 6px;
+            min-height: 300px;
+            padding: 20px;
+            margin-top: 40px;
+            padding-top: 17px;
+            display: flex;
+            flex-direction: column;
+
+            .page-header {
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+                border-bottom: 1px solid #ddd;
+
+                h3 {
+                    margin-bottom: 0px;
+                }
+
+            }
+
+            .page-body {
+                flex-grow: 1;
+            }
+        }
+    }
+
+}
