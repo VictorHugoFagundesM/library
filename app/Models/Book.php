@@ -50,4 +50,25 @@ class Book extends Model
 
     }
 
+    /**
+     * Obtém todos os livros que não possuam empréstimo, também trás o livro do empréstimo atual
+     *
+     * @param [type] $query
+     * @return void
+     */
+    public function scopeGetNotLoanedBooks($query, $bookId = null) {
+
+        $query = $query->from('books as b')
+        ->whereNotIn('b.id', function ($subquery) {
+            $subquery->select('bl.book_id')
+                ->from('book_loans as bl')
+                ->where('bl.is_returned', false);
+        })
+        ->orWhere('b.id', $bookId)
+        ->select('b.*');
+
+        return $query;
+
+    }
+
 }

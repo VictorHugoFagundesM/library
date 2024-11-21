@@ -58,8 +58,8 @@
                     <label>Usuário *</label>
 
                     <select name="user_id" class="form-select">
+                        <option>Selecione um usuário</option>
                         @foreach ($users as $user)
-                            <option>Selecione um usuário</option>
                             <option value="{{$user->id}}" {{$user->id == $loan->user_id ? "selected" : ""}}>{{$user->name}}</option>
                         @endforeach
                     </select>
@@ -71,8 +71,8 @@
                     <label>livro *</label>
 
                     <select name="book_id" class="form-select">
+                        <option>Selecione um livro</option>
                         @foreach ($books as $book)
-                            <option>Selecione um livro</option>
                             <option value="{{$book->id}}" {{$book->id == $loan->book_id ? "selected" : ""}}>{{$book->name}}</option>
                         @endforeach
                     </select>

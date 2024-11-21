@@ -38,7 +38,7 @@ class BookLoanController extends Controller
     public function createEdit(int $id = null) {
         $loan = $id ? BookLoan::find($id) : new BookLoan();
         $users = User::orderBy("name", "asc")->get();
-        $books = Book::orderBy("name", "asc")->get();
+        $books = Book::GetNotLoanedBooks($loan->book_id)->orderBy("name", "asc")->get();
 
         if ($loan) {
 
